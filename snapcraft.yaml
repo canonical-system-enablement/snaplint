@@ -1,0 +1,21 @@
+name: snaplint
+version: '0.1'
+summary: Clean up your snaps
+description: |
+  Snaplint is a tool which scans your snap and points out rule and policy
+  violations.
+  It comes with a default set of rules which look for copyright information,
+  leftover development files, and unneeded libraries. It can also be easily
+  extended with custom rules that fit your development policies.
+
+grade: devel 
+confinement: strict
+
+apps:
+    snaplint:
+        command: snaplint
+
+parts:
+  snaplint:
+    plugin: python
+    source: .
