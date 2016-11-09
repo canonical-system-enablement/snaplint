@@ -38,12 +38,12 @@ class DeveloperCruft(Rule):
         print('Scanning {} for developer cruft...'.format(self.path), end=' ')
 
         fail_list=[]
-        for f in Rule.get_file_list(self.path):
+        for f in self.get_file_list():
             for suffix in NAUGHTY_FILES:
                 if f.endswith(suffix):
                     fail_list.append(f)
 
-        for d in Rule.get_dir_list(self.path):
+        for d in self.get_dir_list():
             for suffix in NAUGHTY_DIRS:
                 if d.endswith(suffix):
                     fail_list.append(d)
