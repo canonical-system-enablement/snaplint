@@ -20,7 +20,8 @@ import os
 class Rule:
 
     def __init__(self, path):
-        self.path = path
+        # Make sure path ends in a separator to make things easier
+        self.path = os.path.join(path, '')
 
     def get_file_list(self):
         '''Return a list of files in the snap'''
