@@ -45,7 +45,13 @@ class LibraryRule(Rule):
 
         # libmagic setup
         ms = magic.open(magic.NONE)
-        ms.load()
+
+        if 'SNAP' in os.environ:
+            # Load the libmagic db from $SNAP
+            ms.load(os.path.join(os.environ['SNAP'], 'usr', 'share',
+                                    'file', 'magic.mgc').encode())
+        else:
+            ms.load()
 
         for entry in glob.glob(self.path + 'command-*.wrapper'):
             with open(entry) as f:
