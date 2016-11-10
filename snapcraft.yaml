@@ -8,14 +8,18 @@ description: |
   leftover development files, and unneeded libraries. It can also be easily
   extended with custom rules that fit your development policies.
 
-grade: devel 
+grade: stable
 confinement: strict
 
 apps:
     snaplint:
         command: snaplint
+        plugs: [home]
 
 parts:
   snaplint:
     plugin: python
     source: .
+    stage-packages:
+        - libmagic1
+        - python3-magic
