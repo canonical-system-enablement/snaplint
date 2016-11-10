@@ -57,12 +57,9 @@ def _get_scanner(module):
         return attr
 
 topdir = os.path.abspath(os.path.join(__file__, '..', '..'))
-print("topdir: %s" % topdir)
 if os.path.exists(os.path.join(topdir, 'setup.py')):
     # Run from checkout
     sys.path = [topdir] + sys.path
-    print('added %s to sys.path' % sys.path[0])
-    print(sys.path)
 
 if __name__ == '__main__':
 
