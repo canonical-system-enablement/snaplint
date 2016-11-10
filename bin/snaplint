@@ -21,6 +21,7 @@ import importlib
 import pkgutil
 import os
 import sys
+import textwrap
 
 def _snap_path(path):
     if os.path.exists(path):
@@ -35,10 +36,13 @@ def _snap_path(path):
         return None
 
 def _parse_args():
-    parser = argparse.ArgumentParser(description='Clean up your snap')
+    parser = argparse.ArgumentParser(description='Clean up your snap',
+                                     formatter_class=argparse.RawTextHelpFormatter)
 
-    parser.add_argument('snap',
-                        help='snap directory to test')
+    parser.add_argument('prime',
+                        help=textwrap.dedent('''\
+                        snap directory to test
+                        (Typically <your-project>/prime)'''))
 
     parser.add_argument('-i', '--include', nargs='+', metavar='rule',
                         help='Run only these rules (default is all rules)')
@@ -64,7 +68,7 @@ if os.path.exists(os.path.join(topdir, 'setup.py')):
 if __name__ == '__main__':
 
     args = _parse_args()
-    snap = _snap_path(args.snap)
+    snap = _snap_path(args.prime)
     if snap == None:
         print("Please specify a valid snap directory")
         sys.exit(1)
