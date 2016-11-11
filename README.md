@@ -17,5 +17,8 @@ It's also available as a snap.
 
         $ snap install snaplint
         $ snaplint <path/to/project/>prime/
+        
+## Writing your own rules
+Adding rules to snaplint is simple. Drop a file in `snaplint/rules/` which contains a python class that inherits from [`Rule`](snaplint/_rule.py). `self.path` will contain the path to your `prime` directory, and you can use convenience methods `self.get_dir_list` and `get_file_list` to get lists of files or directories in the snap.
 
 [snapcraft]: https://github.com/snapcore/snapcraft
