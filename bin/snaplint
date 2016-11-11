@@ -82,7 +82,7 @@ if __name__ == '__main__':
         
     print('Rules to run: ', rules_to_run)
 
-    print("Running scan!")
+    print("Running scan")
     fail = False
     for rule in rules_to_run:
         module = None

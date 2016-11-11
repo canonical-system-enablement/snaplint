@@ -49,11 +49,11 @@ class DeveloperCruft(Rule):
                     fail_list.append(d)
 
         if fail_list:
-            print('FAIL!')
+            print('FAIL')
             print('Development files found:')
             for f in fail_list:
                 print(f)
             return False
 
-        print('OK!')
+        print('OK')
         return True

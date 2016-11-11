@@ -35,10 +35,10 @@ class CopyrightRule(Rule):
         
         pattern = self.path + 'usr/share/doc/*/*copyright*'
         if not glob.glob(pattern, recursive=True):
-            print('FAIL!')
+            print('FAIL')
             print('No copyright data found')
             return False
 
-        print('OK!')
+        print('OK')
         return True
 

@@ -133,11 +133,11 @@ class LibraryRule(Rule):
                 if self.path + lib not in used_links:
                     unused_libs.add(lib)
             if unused_libs:
-                print('FAIL!')
+                print('FAIL')
                 print('Unused libraries found:')
                 for lib in unused_libs:
                     print(lib)
                 return False
             else:
-                print('OK!')
+                print('OK')
                 return True
