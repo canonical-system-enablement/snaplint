@@ -44,9 +44,6 @@ def _parse_args():
                         snap directory to test
                         (Typically <your-project>/prime)'''))
 
-    parser.add_argument('-i', '--include', nargs='+', metavar='rule',
-                        help='Run only these rules (default is all rules)')
-
     args = parser.parse_args()
     return args
 
