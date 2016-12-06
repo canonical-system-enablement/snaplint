@@ -21,5 +21,4 @@ parts:
     plugin: python
     source: .
     stage-packages:
-        - libmagic1
-        - python3-magic
+        - python3-pyelftools
