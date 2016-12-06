@@ -69,9 +69,8 @@ class LibraryRule(Rule):
         super().__init__(path)
 
     def scan(self):
-        '''Run ldd on any binary executables in the snap and check that
-        only necessary shared libraries are included
-        '''
+        '''Examine ELF files in the snap and check that only necessary shared
+        libraries are included '''
         print('Scanning {} for unused shared libraries...'.format(self.path),
               end=' ')
 
