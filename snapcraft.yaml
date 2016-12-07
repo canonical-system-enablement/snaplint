@@ -1,5 +1,5 @@
 name: snaplint
-version: '0.1'
+version: '0.2'
 summary: Clean up your snaps
 description: |
   Snaplint is a tool which scans your snap and points out rule and policy
