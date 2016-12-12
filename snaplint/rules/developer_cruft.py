@@ -17,17 +17,18 @@
 
 from snaplint._rule import Rule
 
-NAUGHTY_FILES=[
+NAUGHTY_FILES = [
     '.o',       # object files
     '.a',       # static libs
     '.h',       # header files
     '.hpp',
 ]
 
-NAUGHTY_DIRS=[
+NAUGHTY_DIRS = [
     '.git',
     '.bzr',
 ]
+
 
 class DeveloperCruft(Rule):
 
@@ -37,7 +38,7 @@ class DeveloperCruft(Rule):
     def scan(self):
         print('Scanning {} for developer cruft...'.format(self.path), end=' ')
 
-        fail_list=[]
+        fail_list = []
         for f in self.get_file_list():
             for suffix in NAUGHTY_FILES:
                 if f.endswith(suffix):

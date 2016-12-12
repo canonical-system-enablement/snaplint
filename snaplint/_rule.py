@@ -17,6 +17,7 @@
 
 import os
 
+
 class Rule:
 
     def __init__(self, path):
@@ -41,7 +42,6 @@ class Rule:
                 dir_list.append(os.path.relpath(os.path.join(root, d),
                                                 self.path))
         return dir_list
-
 
     def scan(self):
         '''Override this method to implement your rule checking logic'''

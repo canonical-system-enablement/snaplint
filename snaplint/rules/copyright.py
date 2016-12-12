@@ -19,6 +19,7 @@ import glob
 
 from snaplint._rule import Rule
 
+
 class CopyrightRule(Rule):
     '''Scan for copyright files in usr/share/doc within the snap. System
     Enablement Team policy requires that these files be present'''
@@ -27,12 +28,12 @@ class CopyrightRule(Rule):
         super().__init__(path)
 
     def scan(self):
-        '''Really dumb check that looks for at least one instance of 
+        '''Really dumb check that looks for at least one instance of
         usr/share/doc/*/*copyright*
         '''
         print('Scanning {} for copyright compliance...'.format(self.path),
               end=' ')
-        
+
         pattern = self.path + 'usr/share/doc/*/*copyright*'
         if not glob.glob(pattern, recursive=True):
             print('FAIL')
@@ -41,4 +42,3 @@ class CopyrightRule(Rule):
 
         print('OK')
         return True
-

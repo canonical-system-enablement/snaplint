@@ -23,11 +23,13 @@ import os
 import sys
 import textwrap
 
+
 def _snap_path(path):
     if os.path.exists(path):
         if os.path.exists(os.path.join(path, 'snapcraft.yaml')):
-        # a valid snap directory should contain meta/snap.yaml
-            if os.path.exists(os.path.join(path, 'prime', 'meta', 'snap.yaml')):
+            # a valid snap directory should contain meta/snap.yaml
+            if os.path.exists(os.path.join(path, 'prime', 'meta',
+                                           'snap.yaml')):
                 return os.path.join(path, 'prime')
             else:
                 print("Please run 'snapcraft prime' in your project to"
@@ -39,9 +41,11 @@ def _snap_path(path):
         print("%s does not exist" % path)
         return None
 
+
 def _parse_args():
-    parser = argparse.ArgumentParser(description='Clean up your snap',
-                                     formatter_class=argparse.RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description='Clean up your snap',
+        formatter_class=argparse.RawTextHelpFormatter)
 
     parser.add_argument('project',
                         help=textwrap.dedent('''\
@@ -50,6 +54,7 @@ def _parse_args():
 
     args = parser.parse_args()
     return args
+
 
 def _get_scanner(module):
     for attr in vars(module).values():
@@ -70,17 +75,18 @@ if __name__ == '__main__':
 
     args = _parse_args()
     snap = _snap_path(args.project)
-    if snap == None:
+    if snap is None:
         print("Please specify a valid snapcraft directory")
         sys.exit(1)
-        
+
     # This logic stolen shamelessly from snapcraft
     import snaplint
     import snaplint.rules
     rules_to_run = []
-    for importer, modname, is_package in pkgutil.iter_modules(snaplint.rules.__path__):
+    for importer, modname, is_package in pkgutil.iter_modules(
+            snaplint.rules.__path__):
         rules_to_run.append(modname)
-        
+
     print('Rules to run: ', rules_to_run)
 
     print("Running scan")
@@ -106,5 +112,3 @@ if __name__ == '__main__':
         sys.exit(1)
     else:
         sys.exit(0)
-
-        

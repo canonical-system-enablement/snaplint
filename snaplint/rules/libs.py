@@ -15,16 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from snaplint._rule import Rule
-
 import os
 
 from elftools.common.exceptions import ELFError
 from elftools.elf.elffile import ELFFile
 
-# Make things work easier on python3
-from elftools.common.py3compat import (
-        ifilter, byte2int, bytes2str, itervalues, str2bytes)
+from snaplint._rule import Rule
+
 
 def _traverse_deps(root, elves):
     for lib in elves[root]['needed']:
@@ -33,6 +30,7 @@ def _traverse_deps(root, elves):
             _traverse_deps(lib, elves)
         else:
             continue
+
 
 class LibraryRule(Rule):
     '''Examine the executables in the snap and make sure that only needed
@@ -46,20 +44,23 @@ class LibraryRule(Rule):
                 with open(os.path.join(self.path, filename), "rb") as fp:
                     try:
                         elf = ELFFile(fp)
-                    except ELFError as e:
+                    except ELFError:
                         # Probably not an ELF file
                         continue
                     dynamic = elf.get_section_by_name(b'.dynamic')
                     if dynamic is None:
                         continue
-                    needed = frozenset(tag.needed for tag in dynamic.iter_tags('DT_NEEDED'))
+                    needed = frozenset(
+                        tag.needed for tag in dynamic.iter_tags('DT_NEEDED'))
                     for tag in dynamic.iter_tags('DT_SONAME'):
                         soname = tag.soname
-                        elves[soname] = {'filename': filename, 'needed': needed, 'used': False}
+                        elves[soname] = {'filename': filename,
+                                         'needed': needed,
+                                         'used': False}
                         break
                     else:
                         roots[filename] = needed
-            except Exception as error:
+            except Exception:
                 # If we can't open the file just skip to the next one
                 continue
 
