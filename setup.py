@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='snaplint',
-      version='0.1',
+      version='0.2',
       description='Clean up your snap',
       author='Scott Sweeny',
       author_email='scott.sweeny@canonical.com',
