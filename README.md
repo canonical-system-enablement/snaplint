@@ -5,7 +5,7 @@ Snaplint is an attempt to encode best-practices for snapping software. To that e
 
 These are the currently supported rules:
  * copyright: check that copyright data is included for:
-   * parts (under usr/share/<part name>/copyright)
+   * parts (under `usr/share/<part name>/copyright`)
    * staged packages
  * developer-cruft: make sure that header files, object files, and static libraries are not included
  * libraries: list those shared libraries in the snap which are not actually used by any apps
